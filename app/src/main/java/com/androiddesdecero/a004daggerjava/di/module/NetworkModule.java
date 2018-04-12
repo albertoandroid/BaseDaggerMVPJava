@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.androiddesdecero.a004daggerjava.api.VideosApiService;
 import com.androiddesdecero.a004daggerjava.di.scope.PerActivity;
+import com.androiddesdecero.a004daggerjava.di.scope.PerNetwork;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,43 +23,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by albertopalomarrobledo on 12/4/18.
  */
 
-//Los modulos son los proveedores de dependencias
 @Module
-public class AppModule {
-
+public class NetworkModule {
     private String mBaseUrl = "http://danzavientrefinal.asesoriavaldebebas.com/";
 
-    private final Application application;
+    public NetworkModule() {
 
-    public AppModule(Application application) {
-        this.application = application;
     }
 
     /*
     Exponer la application al grafo
      */
-    @Provides
-    @Singleton
-    public Application provideApplication() {
-        return application;
-    }
-
-    @Provides
-    @Named("contextapp")
-    @Singleton
-    public Context provideApplicationContext() {
-        return application;
-    }
 
 
-    @Singleton
+    @PerNetwork
     @Provides
     GsonConverterFactory provideGsonConverterFactory(){
         GsonConverterFactory gsonConverterFactory = GsonConverterFactory.create();
         return gsonConverterFactory;
     }
 
-    @Singleton
+    @PerNetwork
     @Provides
     OkHttpClient provideOkHttpClient(){
         return new OkHttpClient.Builder()
@@ -67,13 +52,13 @@ public class AppModule {
                 .build();
     }
 
-    @Singleton
+    @PerNetwork
     @Provides
     RxJavaCallAdapterFactory providerRxJavaCallAdapterFactory(){
         return RxJavaCallAdapterFactory.create();
     }
 
-    @Singleton
+    @PerNetwork
     @Provides
     @Named("videos")
     Retrofit provideRetrofit(OkHttpClient client, GsonConverterFactory converterFactory, RxJavaCallAdapterFactory adapterFactory){
@@ -85,19 +70,10 @@ public class AppModule {
                 .build();
     }
 
-    @Singleton
+    @PerNetwork
     @Provides
     @Named("misvideos")
     VideosApiService provideApiService(@Named("videos")Retrofit retrofit){
         return retrofit.create(VideosApiService.class);
     }
-
-
-    /*
-    Exponer Session Manager al grafo
-     */
-
-    //Exponer Activities al grafo
-
 }
-

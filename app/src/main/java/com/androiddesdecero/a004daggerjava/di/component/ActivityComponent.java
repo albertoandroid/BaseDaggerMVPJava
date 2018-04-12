@@ -4,6 +4,7 @@ import com.androiddesdecero.a004daggerjava.di.module.ActivityModule;
 import com.androiddesdecero.a004daggerjava.di.scope.PerActivity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresenter.VPActivity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPActivity;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel2.MVP2Activity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFragment;
 
 import dagger.Component;
@@ -20,7 +21,7 @@ public interface ActivityComponent {
 
     void inject(MVPActivity mvpActivity);
 
-   // void inject(MVPFragment mvpFragment);
+    void inject(MVP2Activity mvp2Activity);
 
 }
 

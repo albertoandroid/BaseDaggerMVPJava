@@ -19,8 +19,20 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/mainActivityBt22"
+        android:text="Comprobar Dagger MVP Simple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
         android:id="@+id/mainActivityBt3"
         android:text="Comprobar Dagger MVP Fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/mainActivityBt4"
+        android:text="Comprobar Dagger VPSub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

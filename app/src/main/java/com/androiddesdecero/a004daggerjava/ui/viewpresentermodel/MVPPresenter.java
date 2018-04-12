@@ -28,7 +28,7 @@ public class MVPPresenter implements MVP.Presenter {
     @Override
     public void pulsarBoton() {
         model.pulsarBoton();
-        Log.d("TAG", "MVPPresenter");
+        Log.d("TAG", "MVP2Presenter");
         showToast();
     }
 

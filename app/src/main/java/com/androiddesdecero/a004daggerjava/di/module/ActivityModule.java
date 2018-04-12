@@ -12,6 +12,10 @@ import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVP;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPActivity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPModel;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPPresenter;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel2.MVP2;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel2.MVP2Activity;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel2.MVP2Model;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel2.MVP2Presenter;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPF;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFPresenter;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFragment;
@@ -87,6 +91,26 @@ public class ActivityModule {
         MVP.Model model = new MVPModel(presenter);
         presenter.setModel(model);
         return presenter;
+    }
+
+    /***************************************************
+     MVP2 Activity
+     ****************************************************/
+    @PerActivity
+    @Provides
+    public MVP2.View provideMVP2View(){
+        return new MVP2Activity();
+    }
+
+    @PerActivity
+    @Provides MVP2.Presenter providePresenterMVP2(MVP2.View view){
+        MVP2.Presenter presenter = new MVP2Presenter(view);
+        return presenter;
+    }
+
+    @PerActivity
+    @Provides MVP2.Model provideModelMVP2(MVP2.Presenter presenter){
+        return new MVP2Model(presenter);
     }
 
 }

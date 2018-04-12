@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.androiddesdecero.a004daggerjava.ui.viewpresenter.VPActivity;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // startActivity(new Intent(getApplicationContext(), MVPActivity.class));
+                startActivity(new Intent(getApplicationContext(), MVPActivity.class));
             }
         });
     }

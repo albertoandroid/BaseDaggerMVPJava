@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.viewpresenter.VPActivity"></activity>
+        <activity android:name=".ui.viewpresenter.VPActivity" />
+        <activity android:name=".ui.viewpresentermodel.MVPActivity"></activity>
     </application>
 
 </manifest>

@@ -3,16 +3,17 @@ package com.androiddesdecero.a004daggerjava.di.module;
 import android.content.Context;
 
 import com.androiddesdecero.a004daggerjava.di.scope.PerActivity;
+import com.androiddesdecero.a004daggerjava.di.scope.PerFragment;
 import com.androiddesdecero.a004daggerjava.ui.base.BaseActivity;
 import com.androiddesdecero.a004daggerjava.ui.base.BaseFragment;
 import com.androiddesdecero.a004daggerjava.ui.viewpresenter.VP;
 import com.androiddesdecero.a004daggerjava.ui.viewpresenter.VPActivity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresenter.VPPresenter;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVP;
-import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPActivity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPModel;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPPresenter;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPF;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFModel;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFPresenter;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFragment;
 
@@ -26,67 +27,60 @@ import dagger.Provides;
  */
 
 @Module
-public class ActivityModule {
+public class FragmentModule {
 
-    private BaseActivity activity;
     private BaseFragment fragment;
 
-    public ActivityModule() {
+    public FragmentModule() {
     }
 
-    public ActivityModule(BaseActivity baseActivity) {
-        this.activity = baseActivity;
-    }
-
-    public ActivityModule(BaseFragment baseFragment) {
+    public FragmentModule(BaseFragment baseFragment) {
         this.fragment = baseFragment;
     }
 
-    @PerActivity
-    @Named("context")
+    @PerFragment
     @Provides
     Context provideContext() {
-        return activity;
+        return fragment.getActivity();
     }
 
-    @PerActivity
+    @PerFragment
     @Provides
-    BaseActivity provideActivity() {
-        return activity;
+    BaseFragment provideFragmentBase() {
+        return fragment;
     }
 
 
     /***************************************************
-    VP Activity
+     MVPFragment Activity
      ****************************************************/
-    @PerActivity
+
+    @PerFragment
     @Provides
-    public VP.View provideVPView(){
-        return new VPActivity();
+    public MVPFragment provideFragment(){
+        return new MVPFragment();
     }
 
-    @PerActivity
+    @PerFragment
     @Provides
-    VP.Presenter providePresenter(VP.View view){
-        return new VPPresenter(view);
+    public MVPF.View provideMVPFragmentView(){
+        return new MVPFragment();
     }
 
 
-    /***************************************************
-     MVP Activity
-     ****************************************************/
-    @PerActivity
-    @Provides
-    public MVP.View provideMVPView(){
-        return new MVPActivity();
-    }
-
-    @PerActivity
-    @Provides MVP.Presenter providePresenterMVP(MVP.View view){
-        MVP.Presenter presenter = new MVPPresenter(view);
-        MVP.Model model = new MVPModel(presenter);
+    @PerFragment
+    @Provides MVPF.Presenter providePresenterMVPF(MVPF.View view){
+        MVPF.Presenter presenter = new MVPFPresenter(view);
+        MVPF.Model model = new MVPFModel(presenter);
         presenter.setModel(model);
         return presenter;
     }
+
+    /*
+    @PerFragment
+    @Provides MVPF.Presenter providePresenterMVPF(MVPF.View view){
+        return new MVPFPresenter(view);
+    }
+    */
 
 }

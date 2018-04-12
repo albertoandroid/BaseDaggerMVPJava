@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.androiddesdecero.a004daggerjava.ui.viewpresenter.VPActivity;
 import com.androiddesdecero.a004daggerjava.ui.viewpresentermodel.MVPActivity;
+import com.androiddesdecero.a004daggerjava.ui.viewpresentermodelfragment.MVPFragmentActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), MVPActivity.class));
+            }
+        });
+
+        button3 = findViewById(R.id.mainActivityBt3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MVPFragmentActivity.class));
             }
         });
     }

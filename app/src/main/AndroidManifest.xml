@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.viewpresenter.VPActivity" />
-        <activity android:name=".ui.viewpresentermodel.MVPActivity"></activity>
+        <activity android:name=".ui.viewpresentermodel.MVPActivity" />
+        <activity android:name=".ui.viewpresentermodelfragment.MVPFragmentActivity"></activity>
     </application>
 
 </manifest>
